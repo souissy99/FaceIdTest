@@ -106,7 +106,6 @@ function App() {
   }
 
   const verifySignature = async (signature, payload) => { 
-    console.log('verifySignature' , signature, payload)
     const token = await _getData()
 
     if (!token || signature == '' || payload == '') {
@@ -114,7 +113,11 @@ function App() {
       return
     }
 
+    console.log('Try verify')
+
     const valide  = await RSA.verify64(signature, payload, token)
+
+    console.log('valide', valide)
 
     if (valide) {
       setIsLogged(true)
